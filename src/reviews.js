@@ -28,7 +28,7 @@ const calcVerifiedRating = (dataArray) => {
   }
 };
 
-const filterVerified = (dataArray) => {
+export const filterVerified = (dataArray) => {
   const filteredArr = dataArray.filter((review) => {
     if (review.verified) {
       return review;
