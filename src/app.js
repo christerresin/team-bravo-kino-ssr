@@ -4,6 +4,8 @@ import { loadAllMovies, loadMovie } from './movies.js';
 import { kino } from './kinoBuilds.js';
 import { marked } from 'marked';
 import loadMovieReviews from './reviews.js';
+import { getUpcomingScreenings } from './screenings.js'
+
 
 const app = express();
 
@@ -42,6 +44,19 @@ app.get('/api/movies/:id/reviews', async (request, response) => {
   response.json(movieReviews);
 });
 
-app.use('/', express.static('./static'));
+app.get('/api/screenings', async (request, response) => {
+  try {
+    const screeningsData = await getUpcomingScreenings();
+    const jsonObj = {
+      data: screeningsData
+    }
+    const jsonData = JSON.stringify(jsonObj)
+    response.json(JSON.parse(jsonData));
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+app.use("/", express.static("./static"));
 
 export default app;
