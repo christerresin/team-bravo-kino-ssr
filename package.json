@@ -14,20 +14,21 @@
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "dev": "nodemon .",
-    "start": "node .",
-    "watch": "sass --watch src/main.scss static/main.css"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "watch": "sass --watch src/main.scss static/main.css",
+    "build": ""
   },
   "author": "Emil Noren",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stratosfloor/kino.git"
+    "url": "git+https://github.com/christerresin/team-bravo-kino-ssr.git"
   },
   "bugs": {
     "url": "https://github.com/stratosfloor/kino/issues"
   },
-  "homepage": "https://github.com/stratosfloor/kino#readme",
+  "homepage": "",
   "devDependencies": {
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",

@@ -1,3 +1,3 @@
-import app from "./src/app.js"
+import app from './src/app.js';
 
-app.listen(5080);
+app.listen(process.env.PORT || 5080);
