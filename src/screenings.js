@@ -86,12 +86,13 @@ export const getUpcomingMovieScreenings = async (movieId) => {
     `https://lernia-kino-cms.herokuapp.com/api/screenings?filters[movie]=${movieId}`
   );
   const payload = await res.json();
-  const trimedArray = payload.data.map((screening) => {
+  const data = payload.data.map((screening) => {
     return {
       start_time: screening.attributes.start_time,
       room: screening.attributes.room,
     };
   });
+  const todaysDate = new Date();
 
-  return { data: trimedArray };
+  return { data: filterOldScreenings(data, todaysDate) };
 };
