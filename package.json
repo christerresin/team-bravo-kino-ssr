@@ -22,7 +22,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stratosfloor/kino.git"
+    "url": "git+https://github.com/christerresin/team-bravo-kino-ssr.git"
   },
   "bugs": {
     "url": "https://github.com/stratosfloor/kino/issues"
