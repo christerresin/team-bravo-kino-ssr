@@ -48,7 +48,6 @@ const loadMovieReviews = async (movieId) => {
     rating: calcVerifiedRating(trimData(payload)),
   };
 
-  console.log(data);
   return data;
 };
 
