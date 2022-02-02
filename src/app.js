@@ -43,8 +43,6 @@ app.get('/api/movies/:id/reviews', async (request, response) => {
   response.json(movieReviews);
 });
 
-app.use('/', express.static('./static'));
-
 app.get('/api/screenings', async (request, response) => {
   try {
     const screeningsData = await getUpcomingScreenings();
