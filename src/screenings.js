@@ -81,11 +81,13 @@ export async function getUpcomingScreenings() {
   return filteredData;
 }
 
-export const getUpcomingMovieScreenings = async (movieId) => {
-  const res = await fetch(
-    `https://lernia-kino-cms.herokuapp.com/api/screenings?filters[movie]=${movieId}`
-  );
-  const payload = await res.json();
+export const getUpcomingMovieScreenings = async (movieId, mockData) => {
+  const res = mockData
+    ? mockData
+    : await fetch(
+        `https://lernia-kino-cms.herokuapp.com/api/screenings?filters[movie]=${movieId}`
+      );
+  const payload = mockData ? mockData : await res.json();
   const data = payload.data.map((screening) => {
     return {
       start_time: screening.attributes.start_time,

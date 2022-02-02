@@ -3,6 +3,7 @@ import {
   trimData,
   filterOldScreenings,
   filterNextFiveDaysScreenings,
+  getUpcomingMovieScreenings,
 } from '../src/screenings.js';
 
 // Mock Date
@@ -53,6 +54,16 @@ test('If only screenings five days ahead is in the array', async () => {
   futureScreenings.forEach((screening) => {
     expect(
       Date.parse(screening.start_time) < Date.parse(futureDate)
+    ).toBeTruthy();
+  });
+});
+
+test('If movie screenings is only upcoming dates', async () => {
+  const todaysDate = new Date();
+  const screeningData = await getUpcomingMovieScreenings(1, movieScreeningData);
+  screeningData.data.map((screening) => {
+    expect(
+      Date.parse(screening.start_time) > Date.parse(todaysDate)
     ).toBeTruthy();
   });
 });
@@ -2140,3 +2151,179 @@ const data = [
     },
   },
 ];
+
+const movieScreeningData = {
+  data: [
+    {
+      id: 8,
+      attributes: {
+        start_time: '2022-01-25T21:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:02.611Z',
+        updatedAt: '2022-01-23T10:32:02.611Z',
+      },
+    },
+    {
+      id: 17,
+      attributes: {
+        start_time: '2022-01-28T12:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:07.991Z',
+        updatedAt: '2022-01-23T10:32:07.991Z',
+      },
+    },
+    {
+      id: 18,
+      attributes: {
+        start_time: '2022-01-28T17:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:08.517Z',
+        updatedAt: '2022-01-23T10:32:08.517Z',
+      },
+    },
+    {
+      id: 19,
+      attributes: {
+        start_time: '2022-01-28T19:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:09.055Z',
+        updatedAt: '2022-01-23T10:32:09.055Z',
+      },
+    },
+    {
+      id: 24,
+      attributes: {
+        start_time: '2022-01-29T21:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:11.766Z',
+        updatedAt: '2022-01-23T10:32:11.766Z',
+      },
+    },
+    {
+      id: 34,
+      attributes: {
+        start_time: '2022-02-01T17:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:17.954Z',
+        updatedAt: '2022-01-23T10:32:17.954Z',
+      },
+    },
+    {
+      id: 40,
+      attributes: {
+        start_time: '2022-02-02T21:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:21.266Z',
+        updatedAt: '2022-01-23T10:32:21.266Z',
+      },
+    },
+    {
+      id: 41,
+      attributes: {
+        start_time: '2022-02-03T12:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:21.864Z',
+        updatedAt: '2022-01-23T10:32:21.864Z',
+      },
+    },
+    {
+      id: 47,
+      attributes: {
+        start_time: '2022-02-04T19:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:25.382Z',
+        updatedAt: '2022-01-23T10:32:25.382Z',
+      },
+    },
+    {
+      id: 68,
+      attributes: {
+        start_time: '2022-02-09T21:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-23T10:32:37.605Z',
+        updatedAt: '2022-01-23T10:32:37.605Z',
+      },
+    },
+    {
+      id: 90,
+      attributes: {
+        start_time: '2022-02-03T17:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:09:53.235Z',
+        updatedAt: '2022-01-31T15:09:53.235Z',
+      },
+    },
+    {
+      id: 115,
+      attributes: {
+        start_time: '2022-02-09T19:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:04.582Z',
+        updatedAt: '2022-01-31T15:10:04.582Z',
+      },
+    },
+    {
+      id: 123,
+      attributes: {
+        start_time: '2022-02-11T19:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:08.370Z',
+        updatedAt: '2022-01-31T15:10:08.370Z',
+      },
+    },
+    {
+      id: 129,
+      attributes: {
+        start_time: '2022-02-13T12:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:11.036Z',
+        updatedAt: '2022-01-31T15:10:11.036Z',
+      },
+    },
+    {
+      id: 137,
+      attributes: {
+        start_time: '2022-02-15T12:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:14.843Z',
+        updatedAt: '2022-01-31T15:10:14.843Z',
+      },
+    },
+    {
+      id: 140,
+      attributes: {
+        start_time: '2022-02-15T21:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:16.266Z',
+        updatedAt: '2022-01-31T15:10:16.266Z',
+      },
+    },
+    {
+      id: 143,
+      attributes: {
+        start_time: '2022-02-16T19:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:17.612Z',
+        updatedAt: '2022-01-31T15:10:17.612Z',
+      },
+    },
+    {
+      id: 147,
+      attributes: {
+        start_time: '2022-02-17T19:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:19.481Z',
+        updatedAt: '2022-01-31T15:10:19.481Z',
+      },
+    },
+    {
+      id: 160,
+      attributes: {
+        start_time: '2022-02-20T21:00:00.000Z',
+        room: 'Stora salongen',
+        createdAt: '2022-01-31T15:10:25.783Z',
+        updatedAt: '2022-01-31T15:10:25.783Z',
+      },
+    },
+  ],
+};
