@@ -83,7 +83,7 @@ export async function getUpcomingScreenings() {
 
 export const getUpcomingMovieScreenings = async (movieId) => {
   const res = await fetch(
-    `https://lernia-kino-cms.herokuapp.com/api/reviews?filters[movie]=${movieId}&pagination[pageSize]=100`
+    `https://lernia-kino-cms.herokuapp.com/api/screenings?filters[movie]=${movieId}`
   );
   const payload = await res.json();
   return { data: payload.data };
