@@ -1,15 +1,25 @@
 const renderReviewsList = async () => {
-  const loadReviws = async () => {
-    const url = window.location.href;
-    const urlArr = url.split('/');
-    const movieId = urlArr[urlArr.length - 1];
+  const url = window.location.href;
+  const urlArr = url.split('/');
+  const movieId = urlArr[urlArr.length - 1];
 
+  const loadReviws = async () => {
     try {
       const URL = `/api/movies/${movieId}/reviews`;
       const response = await fetch(URL);
       const payload = await response.json();
-      console.log(payload.data);
       return payload.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadVerifiedRating = async () => {
+    try {
+      const URL = `/api/movies/${movieId}/reviews`;
+      const response = await fetch(URL);
+      const payload = await response.json();
+      return payload.rating;
     } catch (error) {
       console.log(error);
     }
@@ -46,6 +56,12 @@ const renderReviewsList = async () => {
   const reviewsData = await loadReviws();
   const page_size = 5;
   let page_number = 0;
+
+  // If no reviews remove buttons
+  if (reviewsData.length < 1) {
+    paginationButtonBack.style.display = 'none';
+    paginationButtonForward.style.display = 'none';
+  }
 
   // Disable forward button onload ? reviews < 5
   if (reviewsData.length <= 1 * page_size) {
@@ -91,6 +107,12 @@ const renderReviewsList = async () => {
       reviewsList.appendChild(li);
     });
   };
+
+  const verifiedRating = await loadVerifiedRating();
+  const ratingSection = document.querySelector('.imdbBtn');
+  if (verifiedRating) {
+    ratingSection.innerHTML = `Betyg: ${verifiedRating}`;
+  }
 
   renderReviews('forward');
 };

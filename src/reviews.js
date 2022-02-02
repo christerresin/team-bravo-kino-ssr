@@ -16,6 +16,18 @@ const trimData = (dataArray) => {
   return verifiedReviewData;
 };
 
+const calcVerifiedRating = (dataArray) => {
+  if (dataArray.length >= 5) {
+    let rating = 0;
+
+    dataArray.map((review) => {
+      rating += review.rating;
+    });
+
+    return Math.round(rating / dataArray.length);
+  }
+};
+
 const filterVerified = (dataArray) => {
   const filteredArr = dataArray.filter((review) => {
     if (review.verified) {
@@ -28,11 +40,12 @@ const filterVerified = (dataArray) => {
 
 const loadMovieReviews = async (movieId) => {
   const res = await fetch(
-    `${API_URL}?filters[movie]=${movieId}&pagination[pageSize]=1000`
+    `${API_URL}?filters[movie]=${movieId}&pagination[pageSize]=100`
   );
   const payload = await res.json();
   const data = {
     data: trimData(payload),
+    rating: calcVerifiedRating(trimData(payload)),
   };
 
   return data;
