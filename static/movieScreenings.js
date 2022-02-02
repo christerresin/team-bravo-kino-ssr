@@ -20,8 +20,8 @@ const movieScreeningsList = document.querySelector('.movieScreeningsList');
 
 if (data) {
   data.map((screening) => {
-    const startDate = screening.attributes.start_time.substring(10, 0);
-    const startTime = screening.attributes.start_time.substring(11, 16);
+    const startDate = screening.start_time.substring(10, 0);
+    const startTime = screening.start_time.substring(11, 16);
 
     const li = document.createElement('li');
     li.style.paddingTop = '0.5rem';
@@ -32,7 +32,7 @@ if (data) {
 
     const screeningCardMovieRoom = document.createElement('p');
     screeningCardMovieRoom.classList.add('screeningCardMovieRoom');
-    screeningCardMovieRoom.innerHTML = `Salong: ${screening.attributes.room}`;
+    screeningCardMovieRoom.innerHTML = `Salong: ${screening.room}`;
 
     const screeningCardMovieTime = document.createElement('p');
     screeningCardMovieTime.classList.add('screeningCardMovieTime');
