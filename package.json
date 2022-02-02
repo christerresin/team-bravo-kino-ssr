@@ -14,8 +14,8 @@
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "dev": "nodemon .",
-    "start": "node .",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "watch": "sass --watch src/main.scss static/main.css",
     "build": ""
   },
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/stratosfloor/kino/issues"
   },
-  "homepage": "https://github.com/stratosfloor/kino#readme",
+  "homepage": "",
   "devDependencies": {
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
