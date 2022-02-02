@@ -4,7 +4,10 @@ import { loadAllMovies, loadMovie } from './movies.js';
 import { kino } from './kinoBuilds.js';
 import { marked } from 'marked';
 import loadMovieReviews from './reviews.js';
-import { getUpcomingScreenings } from './screenings.js';
+import {
+  getUpcomingScreenings,
+  getUpcomingMovieScreenings,
+} from './screenings.js';
 
 const app = express();
 
@@ -54,6 +57,11 @@ app.get('/api/screenings', async (request, response) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+app.get('/api/screenings/:id', async (request, response) => {
+  const data = await getUpcomingMovieScreenings(request.params.id);
+  response.json(data);
 });
 
 app.use('/', express.static('./static'));

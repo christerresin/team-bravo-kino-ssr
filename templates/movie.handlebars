@@ -1,17 +1,17 @@
-<div class="moviePage">
-  <div class="movieMeta">
+<div class='moviePage'>
+  <div class='movieMeta'>
     <h1>{{movie.attributes.title}}</h1>
     {{! IMDB Rating Button }}
     {{! Stolen code from IMDB }}
-    <div class="imdbBtn">
+    <div class='imdbBtn'>
       <span
-        class="imdbRatingPlugin"
-        data-user="ur7938290"
-        data-title="{{movie.attributes.imdbId}}"
-        data-style="p1"
+        class='imdbRatingPlugin'
+        data-user='ur7938290'
+        data-title='{{movie.attributes.imdbId}}'
+        data-style='p1'
       >
         <img
-          src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"
+          src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png'
         />
       </span>
       <script>
@@ -21,18 +21,19 @@
         stags.parentNode.insertBefore(js,stags); })
         (document,"script","imdb-rating-api");
       </script>
-      {{! ---------------------}}
+      {{! -----------------}}
     </div>
     {{{markdown movie.attributes.intro}}}
   </div>
-  <img src="{{movie.attributes.image.url}}" />
+  <img src='{{movie.attributes.image.url}}' />
 
 </div>
-<div class="movieReviewsContainer">
-  <ul class="movieReviewsList">
+<div class='movieReviewsContainer'>
+  <ul class='movieReviewsList'>
 
   </ul>
-  <button class="paginationButtonBack">Load prev</button>
-  <button class="paginationButtonForward">Load next</button>
+  <button class='paginationButtonBack'>Load prev</button>
+  <button class='paginationButtonForward'>Load next</button>
 </div>
-<script type="module" src="/reviews.js"></script>
+<script type='module' src='/reviews.js'></script>
+<script type='module' src='/movieScreenings.js'></script>
