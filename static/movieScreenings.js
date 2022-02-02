@@ -15,7 +15,6 @@ const loadScreenings = async () => {
 };
 
 const data = await loadScreenings();
-console.log(data);
 
 const movieScreeningsList = document.querySelector('.movieScreeningsList');
 
