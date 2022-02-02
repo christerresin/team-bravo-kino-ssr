@@ -1,14 +1,25 @@
 const renderReviewsList = async () => {
-  const loadReviws = async () => {
-    const url = window.location.href;
-    const urlArr = url.split('/');
-    const movieId = urlArr[urlArr.length - 1];
+  const url = window.location.href;
+  const urlArr = url.split('/');
+  const movieId = urlArr[urlArr.length - 1];
 
+  const loadReviws = async () => {
     try {
       const URL = `/api/movies/${movieId}/reviews`;
       const response = await fetch(URL);
       const payload = await response.json();
       return payload.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadVerifiedRating = async () => {
+    try {
+      const URL = `/api/movies/${movieId}/reviews`;
+      const response = await fetch(URL);
+      const payload = await response.json();
+      return payload.rating;
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +107,12 @@ const renderReviewsList = async () => {
       reviewsList.appendChild(li);
     });
   };
+
+  const verifiedRating = await loadVerifiedRating();
+  const ratingSection = document.querySelector('.imdbBtn');
+  if (verifiedRating) {
+    ratingSection.innerHTML = `Betyg: ${verifiedRating}`;
+  }
 
   renderReviews('forward');
 };
