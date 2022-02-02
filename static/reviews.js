@@ -8,7 +8,6 @@ const renderReviewsList = async () => {
       const URL = `/api/movies/${movieId}/reviews`;
       const response = await fetch(URL);
       const payload = await response.json();
-      console.log(payload.data);
       return payload.data;
     } catch (error) {
       console.log(error);
@@ -46,6 +45,12 @@ const renderReviewsList = async () => {
   const reviewsData = await loadReviws();
   const page_size = 5;
   let page_number = 0;
+
+  // If no reviews remove buttons
+  if (reviewsData.length < 1) {
+    paginationButtonBack.style.display = 'none';
+    paginationButtonForward.style.display = 'none';
+  }
 
   // Disable forward button onload ? reviews < 5
   if (reviewsData.length <= 1 * page_size) {

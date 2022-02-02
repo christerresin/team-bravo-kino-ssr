@@ -28,7 +28,7 @@ const filterVerified = (dataArray) => {
 
 const loadMovieReviews = async (movieId) => {
   const res = await fetch(
-    `${API_URL}?filters[movie]=${movieId}&pagination[pageSize]=1000`
+    `${API_URL}?filters[movie]=${movieId}&pagination[pageSize]=100`
   );
   const payload = await res.json();
   const data = {
