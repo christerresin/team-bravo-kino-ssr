@@ -6,7 +6,7 @@ import { loadAllMovies, loadMovie } from '../src/movies.js';
 test('Test if main page is loading', async () => {
   const response = await request(app).get('/').expect(200);
 
-  expect(response.text).toBeFalsy();
+  expect(response.text).toBeTruthy();
 });
 
 test('Test if /index is working too', async () => {
