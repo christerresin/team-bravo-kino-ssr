@@ -146,7 +146,7 @@ const renderReviewSection = () => {
 
     if (!reviewComment) {
       alert('Du glömde lämna en kommentar');
-    }else if (!reviewAuthor) {
+    } else if (!reviewAuthor) {
       alert('Du glömde fylla i insändare');
     } else if (!selectedMovieRating) {
       alert('Vänligen välj ett betyg för filmen');
@@ -155,9 +155,12 @@ const renderReviewSection = () => {
       fetch(`/api/reviews/${movieId}`, {
         method: 'POST',
         body: JSON.stringify({
-          rating: selectedMovieRating,
-          comment: reviewComment,
-          author: reviewAuthor
+          "data": {
+            "rating": parseInt(selectedMovieRating),
+            "comment": reviewComment,
+            "author": reviewAuthor,
+            "movie": parseInt(movieId)
+          }
         }),
         headers: {
           "Content-Type": "application/json"
