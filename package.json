@@ -17,7 +17,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "watch": "sass --watch src/main.scss static/main.css",
-    "build": "sass ./src/main.scss ./static/main.css"
+    "build": "sass src/main.scss static/main.css"
   },
   "author": "Emil Noren",
   "license": "ISC",
