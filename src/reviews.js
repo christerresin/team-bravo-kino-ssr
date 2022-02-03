@@ -1,3 +1,4 @@
+import { raw, request } from 'express';
 import fetch from 'node-fetch';
 
 const API_URL = `https://lernia-kino-cms.herokuapp.com/api/reviews`;
@@ -53,6 +54,7 @@ export const loadMovieReviews = async (movieId) => {
 
 export const postNewReview = async (review) => {
   const data = JSON.stringify(review);
+
   try {
     const res = await fetch('https://lernia-kino-cms.herokuapp.com/api/reviews/', {
       method: 'POST',
@@ -65,6 +67,5 @@ export const postNewReview = async (review) => {
   } catch (error) {
     console.log(error);
   }
-
 
 }
