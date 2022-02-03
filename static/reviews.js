@@ -131,9 +131,16 @@ const renderReviewSection = () => {
 
   ratingRange.forEach((number) => {
     const li = document.createElement('li');
+    li.className = 'reviewNumber';
     li.innerHTML = number;
     li.addEventListener('click', () => {
       selectedMovieRating = li.innerText;
+      const allNumbers = document.querySelectorAll('.reviewNumber');
+      const allItems = Array.from(allNumbers);
+      allItems.map((item) => {
+        item.classList.remove('selected');
+      })
+      li.classList.add('selected')
     })
     ratingSelector.appendChild(li);
   });
