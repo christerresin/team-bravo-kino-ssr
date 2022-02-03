@@ -3,7 +3,7 @@ import { engine } from 'express-handlebars';
 import { loadAllMovies, loadMovie } from './movies.js';
 import { kino } from './kinoBuilds.js';
 import { marked } from 'marked';
-import loadMovieReviews from './reviews.js';
+import { loadMovieReviews, postNewReview } from './reviews.js';
 import {
   getUpcomingScreenings,
   getUpcomingMovieScreenings,
@@ -62,6 +62,11 @@ app.get('/api/screenings', async (request, response) => {
 app.get('/api/screenings/:id', async (request, response) => {
   const data = await getUpcomingMovieScreenings(request.params.id);
   response.json(data);
+});
+
+app.use(express.json());
+app.post('/api/reviews/:id', async (request, response) => {
+  postNewReview(request.body);
 });
 
 app.use('/', express.static('./static'));

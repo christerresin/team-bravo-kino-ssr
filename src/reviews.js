@@ -38,7 +38,7 @@ export const filterVerified = (dataArray) => {
   return filteredArr;
 };
 
-const loadMovieReviews = async (movieId) => {
+export const loadMovieReviews = async (movieId) => {
   const res = await fetch(
     `${API_URL}?filters[movie]=${movieId}&pagination[pageSize]=100`
   );
@@ -51,4 +51,20 @@ const loadMovieReviews = async (movieId) => {
   return data;
 };
 
-export default loadMovieReviews;
+export const postNewReview = async (review) => {
+  const data = JSON.stringify(review);
+  try {
+    const res = await fetch('https://lernia-kino-cms.herokuapp.com/api/reviews/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: data
+    });
+    console.log(res.status)
+  } catch (error) {
+    console.log(error);
+  }
+
+
+}

@@ -15,11 +15,35 @@
     p {
       font-size: 1.2rem;
     }
-  
   }
 
   img {
     grid-column: 9 / 12;
     size: 100%;
+  }
+}
+
+.reviewRating {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin-top: 0.5rem;
+
+  .reviewNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5rem;
+    background-color: $c-black;
+    color: $c-white;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+
+    width: 3rem;
+    height: 3rem;
+  }
+  .selected {
+    background-color: $c-red;
   }
 }

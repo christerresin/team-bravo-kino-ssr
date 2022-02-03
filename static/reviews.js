@@ -118,3 +118,67 @@ const renderReviewsList = async () => {
 };
 
 renderReviewsList();
+
+// Leave review
+const renderReviewSection = () => {
+  const url = window.location.href;
+  const urlArr = url.split('/');
+  const movieId = urlArr[urlArr.length - 1];
+
+  const ratingSelector = document.querySelector('.reviewRating');
+  const ratingRange = [0, 1, 2, 3, 4, 5];
+  let selectedMovieRating = null
+
+  ratingRange.forEach((number) => {
+    const li = document.createElement('li');
+    li.className = 'reviewNumber';
+    li.innerHTML = number;
+    li.addEventListener('click', () => {
+      selectedMovieRating = li.innerText;
+      const allNumbers = document.querySelectorAll('.reviewNumber');
+      const allItems = Array.from(allNumbers);
+      allItems.map((item) => {
+        item.classList.remove('selected');
+      })
+      li.classList.add('selected')
+    })
+    ratingSelector.appendChild(li);
+  });
+
+  const submitButton = document.querySelector('#submitReview');
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    const reviewComment = document.querySelector('#reviewComment').value;
+    const reviewAuthor = document.querySelector('#reviewAuthor').value;
+
+    if (!reviewComment) {
+      alert('Du glömde lämna en kommentar');
+    } else if (!reviewAuthor) {
+      alert('Du glömde fylla i insändare');
+    } else if (!selectedMovieRating) {
+      alert('Vänligen välj ett betyg för filmen');
+    } else {
+
+      fetch(`/api/reviews/${movieId}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          "data": {
+            "rating": parseInt(selectedMovieRating),
+            "comment": reviewComment,
+            "author": reviewAuthor,
+            "movie": parseInt(movieId)
+          }
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      document.querySelector('#reviewComment').value = '';
+      document.querySelector('#reviewAuthor').value = '';
+      selectedMovieRating = null;
+    }
+
+  });
+}
+
+renderReviewSection();
