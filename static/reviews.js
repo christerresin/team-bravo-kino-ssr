@@ -139,7 +139,7 @@ const renderReviewSection = () => {
       const allItems = Array.from(allNumbers);
       allItems.map((item) => {
         item.classList.remove('selected');
-      })
+      });
       li.classList.add('selected')
     })
     ratingSelector.appendChild(li);
@@ -172,11 +172,17 @@ const renderReviewSection = () => {
         headers: {
           "Content-Type": "application/json"
         }
-      })
+      });
+
       document.querySelector('#reviewComment').value = '';
       document.querySelector('#reviewAuthor').value = '';
       selectedMovieRating = null;
-    }
+      const allNumbers = document.querySelectorAll('.reviewNumber');
+      const allItems = Array.from(allNumbers);
+      allItems.map((item) => {
+        item.classList.remove('selected');
+      });
+    };
 
   });
 }
