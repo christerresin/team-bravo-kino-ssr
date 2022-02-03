@@ -64,6 +64,11 @@ app.get('/api/screenings/:id', async (request, response) => {
   response.json(data);
 });
 
+app.use(express.json());
+app.post('/api/reviews/:id', async (request, response) => {
+  console.log(request.body);
+});
+
 app.use('/', express.static('./static'));
 
 export default app;

@@ -42,5 +42,16 @@
 
   </ul>
 </div>
+<div class="movieReviewContainer">
+  <form action=`/api/movies/${id}` class="movieReview">
+    <div class="movieReviewRatingHeader">Välj betyg</div>
+    <ul class="reviewRating"></ul>
+    <label for="reviewComment">Kommentar</label>
+    <input type="text" id="reviewComment">
+    <label for="reviewAuthor">Insändare</label>
+    <input type="text" id="reviewAuthor">
+    <button id="submitReview">Skicka</button>
+  </form>
+</div>
 <script type='module' src='/reviews.js'></script>
 <script type='module' src='/movieScreenings.js'></script>

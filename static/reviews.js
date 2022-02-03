@@ -118,3 +118,44 @@ const renderReviewsList = async () => {
 };
 
 renderReviewsList();
+
+// Leave review
+const renderReviewSection = () => {
+  const url = window.location.href;
+  const urlArr = url.split('/');
+  const movieId = urlArr[urlArr.length - 1];
+
+  const ratingSelector = document.querySelector('.reviewRating');
+  const ratingRange = [0, 1, 2, 3, 4, 5];
+  let selectedMovieRating = null
+
+  ratingRange.forEach((number) => {
+    const li = document.createElement('li');
+    li.innerHTML = number;
+    li.addEventListener('click', () => {
+      selectedMovieRating = li.innerText;
+    })
+    ratingSelector.appendChild(li);
+  });
+
+  const submitButton = document.querySelector('#submitReview');
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    const reviewComment = document.querySelector('#reviewComment').value;
+    const reviewAuthor = document.querySelector('#reviewAuthor').value;
+
+    fetch(`/api/reviews/${movieId}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        rating: selectedMovieRating,
+        comment: reviewComment,
+        author: reviewAuthor
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  });
+}
+
+renderReviewSection();
