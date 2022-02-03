@@ -145,6 +145,7 @@ const renderReviewSection = () => {
     ratingSelector.appendChild(li);
   });
 
+  // Leave review input logic
   const submitButton = document.querySelector('#submitReview');
   submitButton.addEventListener('click', (e) => {
     e.preventDefault()
@@ -174,6 +175,7 @@ const renderReviewSection = () => {
         }
       });
 
+      // Cleares review section of inputs/selections
       document.querySelector('#reviewComment').value = '';
       document.querySelector('#reviewAuthor').value = '';
       selectedMovieRating = null;
