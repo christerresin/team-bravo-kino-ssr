@@ -159,7 +159,7 @@ const renderReviewSection = () => {
       alert('Vänligen välj ett betyg för filmen');
     } else {
 
-      fetch(`/api/reviews/${movieId}`, {
+      fetch(`/api/reviews`, {
         method: 'POST',
         body: JSON.stringify({
           "data": {

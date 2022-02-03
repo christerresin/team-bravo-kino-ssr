@@ -65,7 +65,7 @@ app.get('/api/screenings/:id', async (request, response) => {
 });
 
 app.use(express.json());
-app.post('/api/reviews/:id', async (request, response) => {
+app.post('/api/reviews', async (request, response) => {
   postNewReview(request.body);
 });
 
