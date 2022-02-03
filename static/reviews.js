@@ -144,17 +144,30 @@ const renderReviewSection = () => {
     const reviewComment = document.querySelector('#reviewComment').value;
     const reviewAuthor = document.querySelector('#reviewAuthor').value;
 
-    fetch(`/api/reviews/${movieId}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        rating: selectedMovieRating,
-        comment: reviewComment,
-        author: reviewAuthor
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+    if (!reviewComment) {
+      alert('Du glömde lämna en kommentar');
+    }else if (!reviewAuthor) {
+      alert('Du glömde fylla i insändare');
+    } else if (!selectedMovieRating) {
+      alert('Vänligen välj ett betyg för filmen');
+    } else {
+
+      fetch(`/api/reviews/${movieId}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          rating: selectedMovieRating,
+          comment: reviewComment,
+          author: reviewAuthor
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      document.querySelector('#reviewComment').value = '';
+      document.querySelector('#reviewAuthor').value = '';
+      selectedMovieRating = null;
+    }
+
   });
 }
 
