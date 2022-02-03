@@ -139,12 +139,13 @@ const renderReviewSection = () => {
       const allItems = Array.from(allNumbers);
       allItems.map((item) => {
         item.classList.remove('selected');
-      })
+      });
       li.classList.add('selected')
     })
     ratingSelector.appendChild(li);
   });
 
+  // Leave review input logic
   const submitButton = document.querySelector('#submitReview');
   submitButton.addEventListener('click', (e) => {
     e.preventDefault()
@@ -172,11 +173,18 @@ const renderReviewSection = () => {
         headers: {
           "Content-Type": "application/json"
         }
-      })
+      });
+
+      // Cleares review section of inputs/selections
       document.querySelector('#reviewComment').value = '';
       document.querySelector('#reviewAuthor').value = '';
       selectedMovieRating = null;
-    }
+      const allNumbers = document.querySelectorAll('.reviewNumber');
+      const allItems = Array.from(allNumbers);
+      allItems.map((item) => {
+        item.classList.remove('selected');
+      });
+    };
 
   });
 }
