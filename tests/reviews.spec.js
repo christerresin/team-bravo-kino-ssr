@@ -30,17 +30,41 @@ test('If pagination is only showing 5 reviews at once per page', async () => {
   expect(isEqualArr).toEqual(reviewsArr3);
   expect(reviewsArr).toEqual(reviewsArr3);
 
-  // Check if page1 and page3 is equal
-  let isEqual = false;
+  // Check if page1 and page3 has same ids on objs
+  let idIsEqual = false;
   for (let i = 0; i < 5; i++) {
     if (reviewsArr.find(review => reviewsArr3[i].id === review.id)) {
-      isEqual = true;
+      idIsEqual = true;
     } else {
-      isEqual = false;
+      idIsEqual = false;
       break;
     }
   };
-  expect(isEqual).toBeTruthy();
+  expect(idIsEqual).toBeTruthy();
+
+  // Check if page1 and page3 has same comments on objs
+  let commentIsEqual = false;
+  for (let i = 0; i < 5; i++) {
+    if (reviewsArr.find(review => reviewsArr3[i].comment === review.comment)) {
+      commentIsEqual = true;
+    } else {
+      commentIsEqual = false;
+      break;
+    }
+  };
+  expect(commentIsEqual).toBeTruthy();
+
+  // Check if page1 and page3 has same authors on objs
+  let authorIsEqual = false;
+  for (let i = 0; i < 5; i++) {
+    if (reviewsArr.find(review => reviewsArr3[i].author === review.author)) {
+      authorIsEqual = true;
+    } else {
+      authorIsEqual = false;
+      break;
+    }
+  };
+  expect(authorIsEqual).toBeTruthy();
 
   //Check if page1 and page2 is not equal
   let isNotEqual = false;
