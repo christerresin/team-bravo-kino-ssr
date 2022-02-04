@@ -10,7 +10,7 @@ test('if only verified reviews is returned', async () => {
   }
 });
 
-test('If pagination is only showing 5 reviews at once per pagek', async () => {
+test('If pagination is only showing 5 reviews at once per page', async () => {
   const page_size = 5;
   let page_number = 1;
 
