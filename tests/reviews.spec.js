@@ -1,4 +1,5 @@
 import { filterVerified } from '../src/reviews';
+import pagination from '../static/pagination.js'
 
 test('if only verified reviews is returned', async () => {
   const verifiedReviewsArr = filterVerified(data);
@@ -7,6 +8,52 @@ test('if only verified reviews is returned', async () => {
       expect(review.verified).toBeTruthy();
     });
   }
+});
+
+test('If pagination is only showing 5 reviews at once per pagek', async () => {
+  const page_size = 5;
+  let page_number = 1;
+
+  const reviewsArr = pagination(data, page_size, page_number);
+  expect(reviewsArr.length <= 5).toBeTruthy();
+
+  page_number++;
+  const reviewsArr2 = pagination(data, page_size, page_number);
+  expect(reviewsArr2.length <= 5).toBeTruthy();
+
+  page_number--;
+  const reviewsArr3 = pagination(data, page_size, page_number);
+  expect(reviewsArr3.length <= 5).toBeTruthy();
+
+  // Check if pagination works forward and backward, compare page1 and page3
+  const isEqualArr = reviewsArr3.filter((review1) => reviewsArr.find(review2 => review1.id === review2.id));
+  expect(isEqualArr).toEqual(reviewsArr3);
+  expect(reviewsArr).toEqual(reviewsArr3);
+
+  // Check if page1 and page3 is equal
+  let isEqual = false;
+  for (let i = 0; i < 5; i++) {
+    if (reviewsArr.find(review => reviewsArr3[i].id === review.id)) {
+      isEqual = true;
+    } else {
+      isEqual = false;
+      break;
+    }
+  };
+  expect(isEqual).toBeTruthy();
+
+  //Check if page1 and page2 is not equal
+  let isNotEqual = false;
+  for (let i = 0; i < 5; i++) {
+    if (reviewsArr.find(review => reviewsArr2[i].id === review.id)) {
+      isNotEqual = true;
+    } else {
+      isNotEqual = false;
+      break;
+    }
+  };
+  expect(isNotEqual).toBeFalsy();
+
 });
 
 // MOCK data
@@ -62,6 +109,34 @@ const data = [
   },
   {
     id: 164,
+    comment: "I'm so proud of my dad",
+    rating: 5,
+    author: 'Son',
+    verified: true,
+  },
+  {
+    id: 264,
+    comment: "I'm so proud of my dad",
+    rating: 5,
+    author: 'Son',
+    verified: true,
+  },
+  {
+    id: 364,
+    comment: "I'm so proud of my dad",
+    rating: 5,
+    author: 'Son',
+    verified: true,
+  },
+  {
+    id: 464,
+    comment: "I'm so proud of my dad",
+    rating: 5,
+    author: 'Son',
+    verified: true,
+  },
+  {
+    id: 564,
     comment: "I'm so proud of my dad",
     rating: 5,
     author: 'Son',

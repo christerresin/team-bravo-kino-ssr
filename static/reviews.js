@@ -1,3 +1,5 @@
+import pagination from './pagination.js'
+
 const renderReviewsList = async () => {
   const url = window.location.href;
   const urlArr = url.split('/');
@@ -66,10 +68,6 @@ const renderReviewsList = async () => {
   // Disable forward button onload ? reviews < 5
   if (reviewsData.length <= 1 * page_size) {
     paginationButtonForward.disabled = true;
-  }
-
-  function pagination(array, page_size, page_number) {
-    return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
 
   const renderReviews = (direction) => {
