@@ -1,6 +1,7 @@
 @include desktop {
 
   .comingSoon {
+    
     background-color: $c-black;
     color: $c-white;
   }
@@ -23,13 +24,15 @@
     
   }
 
-  .comingSoonImg {
-    display: flex;
-    justify-content: center;
-  }
 
-  .comingSoonImg img {
+  .comingSoonImg {
+
     height: 600px;
     width: 600px;
+    margin: 0 auto;
+    background-image: url('/img/covers/cover10.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 }

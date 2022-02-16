@@ -139,13 +139,13 @@ img {
   }
 
   .comingSoonImg {
-    display: flex;
-    justify-content: center;
-  }
-
-  .comingSoonImg img {
     height: 600px;
     width: 600px;
+    margin: 0 auto;
+    background-image: url("/img/covers/cover10.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 }
 @media screen and (min-width: 960px) {
@@ -343,7 +343,7 @@ img {
   background-color: #100f0f;
   color: #fafafa;
   margin-left: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   width: 3rem;
   height: 3rem;
 }
