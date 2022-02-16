@@ -45,3 +45,11 @@
     background-size: contain;
   }
 }
+
+.screeningsCards .screeningCard:link {
+  color: $c-white;
+}
+
+.screeningsCards .screeningCard:visited {
+  color: pink;
+}
